@@ -1,0 +1,53 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class EventsIntro {
+
+    public static void main(String[] args) {
+
+       JFrame frame = new JFrame("Clicker Game");
+       JLabel showClicks = new JLabel("0", SwingConstants.CENTER);
+       JButton incrementButton = new JButton("+");
+       JButton decrementButton = new JButton("-");
+       JButton resetButton = new JButton("Reset");
+
+       frame.setLayout(new GridLayout(2, 1));
+       JPanel buttonPanel = new JPanel(new GridLayout(1, 3));
+
+       frame.setSize(300, 200);
+       frame.add(showClicks);
+       buttonPanel.add(incrementButton);
+       buttonPanel.add(decrementButton);
+       buttonPanel.add(resetButton);
+       frame.add(buttonPanel);
+
+       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+       frame.setVisible(true);
+
+       incrementButton.addActionListener(new ActionListener() {
+           public void actionPerformed(ActionEvent e) {
+               int counter = Integer.parseInt(showClicks.getText());
+               counter++;
+               showClicks.setText(String.valueOf(counter));
+           }
+       });
+
+       decrementButton.addActionListener(new ActionListener() {
+           public void actionPerformed(ActionEvent e) {
+               int counter = Integer.parseInt(showClicks.getText());
+               if (counter > 0) {
+                   counter--;
+               }
+               showClicks.setText(String.valueOf(counter));
+           }
+       });
+
+       resetButton.addActionListener(new ActionListener() {
+           public void actionPerformed(ActionEvent e) {
+               showClicks.setText("0");
+           }
+       });
+    }
+}
